@@ -1,0 +1,20 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        if(digits.isEmpty()) return Collections.emptyList();
+        List<String> output=new ArrayList<>();
+        String phone[]={"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        backtrack("",digits,phone,output);
+        return output;
+    }
+    public void backtrack(String com,String next,String[] phone,List<String> output){
+        if(next.isEmpty()){
+            output.add(com);
+        }
+        else{
+            String letter=phone[next.charAt(0) - '2'];
+            for(char l:letter.toCharArray()){
+                backtrack(com+l,next.substring(1),phone,output);
+            }
+        }
+    }
+}
